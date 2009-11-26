@@ -1,0 +1,4 @@
+tmp/*
+coverage/*
+config/database.yml
+db/*.sqlite*
