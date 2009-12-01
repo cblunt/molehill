@@ -1,0 +1,15 @@
+- title "Log in"
+
+%p== Don't have an account? #{link_to "Sign up!", signup_path}
+
+- form_tag sessions_path, :id => :login do
+  %p
+    = label_tag :email_address, "Email Address"
+    %br
+    = text_field_tag :email_address, params[:email_address]
+  %p
+    = label_tag :password
+    %br
+    = password_field_tag :password
+  %p
+    = submit_tag "Log in"

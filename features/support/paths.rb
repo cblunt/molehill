@@ -20,6 +20,9 @@ module NavigationHelpers
     when /the posts page/i
       posts_path
 
+    when /the login page/i
+      login_path
+
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

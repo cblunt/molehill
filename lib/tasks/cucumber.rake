@@ -25,6 +25,13 @@ begin
       t.cucumber_opts = "--color --tags @wip:2 --wip --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'}"
     end
 
+    Cucumber::Rake::Task.new(:rcov) do |t|
+      t.binary = vendored_cucumber_binary
+      t.fork = true # You may get faster startup if you set this to false
+      t.rcov = true
+      t.rcov_opts << %[-o "features_rcov"]
+    end
+
     desc 'Run all features'
     task :all => [:ok, :wip]
   end

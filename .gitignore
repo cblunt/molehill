@@ -2,4 +2,5 @@ tmp/*
 coverage/*
 config/database.yml
 db/*.sqlite*
-log/*
+log/*.log
+coverage/*
