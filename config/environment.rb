@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "rspec", :lib => false
   config.gem "rspec-rails", :lib => false
+  config.gem "factory_girl", :source => "http://gemcutter.org"
   config.gem "cucumber"
   config.gem "webrat"
 
