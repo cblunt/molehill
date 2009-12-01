@@ -2,9 +2,11 @@ Given /^I am not logged in$/ do
   @current_user = nil
 end
 
-When /^I visit the homepage$/ do
-  visit posts_path
-end 
+Given /^there are ([0-9]*) posts$/ do |count|
+  count.to_i.times do 
+    Factory(:post)
+  end
+end
 
 Then /^I should see a list of posts$/ do
   response.should have_tag "ul#posts"

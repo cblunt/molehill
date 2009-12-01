@@ -1,3 +1,6 @@
+%h2 Recent Posts
+
 %ul#posts
   = render :partial => "post", :collection => @posts
 
+= will_paginate @posts, :previous_label => "Previous Page", :next_label => "Next Page"
