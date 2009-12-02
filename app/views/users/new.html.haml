@@ -5,13 +5,9 @@
 - form_for @user do |f|
   = f.error_messages
   %p
-    = f.label :username
+    = f.label :email_address, "Email Address"
     %br
-    = f.text_field :username
-  %p
-    = f.label :email, "Email Address"
-    %br
-    = f.text_field :email
+    = f.text_field :email_address
   %p
     = f.label :password
     %br

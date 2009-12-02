@@ -1,7 +1,7 @@
-  
+Feature: Logging in and out of the application
   So that I can post new cases
-  As a guest
-  I want to be able to log in to my account
+  As a user
+  I want to be able to log in to and out of my account
 
 Scenario: Guests should see a log in link
   Given I am not logged in

@@ -25,7 +25,15 @@ module NavigationHelpers
       
     when /the session(s?) page/i
       sessions_path
-        
+
+    when /the signup page/i
+      signup_path
+
+    when /the users page/i
+      users_path
+
+    when /the new user page/i
+      new_user_path
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
