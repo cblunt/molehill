@@ -1,7 +1,3 @@
-Given /^I am not logged in$/ do
-  @current_user = nil
-end
-
 Given /^there are ([0-9]*) posts$/ do |count|
   count.to_i.times do 
     Factory(:post)
