@@ -29,7 +29,8 @@ begin
       t.binary = vendored_cucumber_binary
       t.fork = true # You may get faster startup if you set this to false
       t.rcov = true
-      t.rcov_opts << %[-o "features_rcov"]
+      t.rcov_opts << %[-o "features_coverage"]
+      t.rcov_opts << %[-x "features"]
     end
 
     desc 'Run all features'
