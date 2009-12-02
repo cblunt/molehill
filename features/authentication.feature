@@ -22,3 +22,13 @@ Scenario: Guests should see the login form
   And I should see "Password" within "form#login"
   And there should be "input[type=text]#email_address" within "form#login"
   And there should be "input[type=password]#password" within "form#login"
+  
+Scenario: Attempting to authenticate with invalid details should show an error message
+  Given I am not logged in
+  When I am on the login page
+  And I fill in the following:
+    | Email Address | foo@example.com |
+    | Password | invalid |
+  And I press "Log in"
+  Then I should be on the sessions page
+  And I should see "Invalid email address or password."

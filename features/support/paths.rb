@@ -22,6 +22,10 @@ module NavigationHelpers
 
     when /the login page/i
       login_path
+      
+    when /the session(s?) page/i
+      sessions_path
+        
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
