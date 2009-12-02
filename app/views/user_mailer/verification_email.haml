@@ -1,0 +1,7 @@
+To activate your account, please click on the following link:
+
+= link_to "Verify Your Account", verify_path(@user.id, @user.verification_key)
+
+= "or visit #{verify_path(@user.id, @user.verification_key)}" 
+
+Thank you

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :email_address, :password, :password_confirmation
   
   attr_accessor :password
+
+  before_create :reset_verification
   before_save :prepare_password
   
   validates_uniqueness_of :email_address, :allow_blank => true
@@ -15,8 +17,17 @@ class User < ActiveRecord::Base
     return user if user && user.matching_password?(pass)
   end
   
+  def verify_with_key(key)
+    update_attribute(:verified_at, Time.now) if key == self.verification_key
+  end
+  
   def matching_password?(pass)
     self.password_hash == encrypt_password(pass)
+  end
+
+  def reset_verification
+    self.verified_at = nil
+    self.verification_key = Digest::SHA2.hexdigest("#{Time.now} #{rand(1000)}")
   end
   
   private

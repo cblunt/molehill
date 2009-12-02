@@ -5,7 +5,7 @@ module NavigationHelpers
   #
   # step definition in webrat_steps.rb
   #
-  def path_to(page_name)
+  def path_to(page_name, params = {})
     case page_name
     
     when /the home\s?page/
@@ -18,23 +18,26 @@ module NavigationHelpers
     #     user_profile_path(User.find_by_login($1))
 
     when /the posts page/i
-      posts_path
+      posts_path(params)
 
     when /the login page/i
-      login_path
+      login_path(params)
       
     when /the session(s?) page/i
-      sessions_path
+      sessions_path(params)
 
     when /the signup page/i
-      signup_path
+      signup_path(params)
 
     when /the users page/i
-      users_path
+      users_path(params)
 
     when /the new user page/i
-      new_user_path
-
+      new_user_path(params)
+      
+    when /the (verify|verification) page/i
+      verify_path(params)
+    
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
