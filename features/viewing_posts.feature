@@ -33,4 +33,5 @@ Scenario: Guests should be able to page through posts
 Scenario: Guests should not see the new post entry form
   Given I am not logged in
   When I am on the home page
-  Then I should not see "Post Case"
+  Then there should not be "form#new_post"
+  And there should not be "input[value='Post Case']"

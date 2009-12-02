@@ -22,3 +22,14 @@ Then /^there should be( a| an)? "([^\"]*)" within "([^\"]*)"$/ do |an, selector,
     s.should have_tag(selector)
   end
 end
+
+
+Then /^there should not be( a| an)? "([^\"]*)"$/ do |an, selector|
+  response.should_not have_tag(selector)
+end
+
+Then /^there should not be( a| an)? "([^\"]*)" within "([^\"]*)"$/ do |an, selector, scope|
+  within(scope) do |s|
+    s.should_not have_tag(selector)
+  end
+end
