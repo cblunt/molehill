@@ -7,7 +7,7 @@ When /^(?:|I )visit (.+) with (.+)$/ do |page_name, param_string|
     key = parts[0]
     val = parts[1]
     
-    params[key.to_s] = val.to_s
+    params[key.to_s.strip] = val.to_s.strip
   end
   
   visit path_to(page_name, params)

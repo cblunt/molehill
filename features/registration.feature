@@ -74,3 +74,10 @@ Scenario: Verifying a newly created account
   Then I should see "Thank you for verifying your account!"
   And I should be logged in
   And I should be on the home page
+  
+
+Scenario: The verification key is wrong
+  Given a user exists with email_address: "foo@bar.com", password: "secret" 
+  And I visit the verification page with id:8, verification_key:invalid
+  Then I should see "Your account could not be verified"
+  And I should not be logged in

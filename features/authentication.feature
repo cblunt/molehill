@@ -23,17 +23,6 @@ Scenario: Guests should see the login form
   And there should be "input[type=text]#email_address" within "form#login"
   And there should be "input[type=password]#password" within "form#login"
   
-Scenario: Authenticating with invalid email address
-  Given I am not logged in
-  And a user exists with email_address: "bar@example.com", password: "secret"
-  When I am on the login page
-  And I fill in the following:
-    | Email Address | foo@example.com |
-    | Password | secret |
-  And I press "Log in"
-  Then I should be on the sessions page
-  And I should see "Invalid email address or password."
-
 Scenario: Authenticating with invalid password
   Given I am not logged in
   And a user exists with email_address: "foot@example.com", password: "secret"
@@ -43,18 +32,17 @@ Scenario: Authenticating with invalid password
     | Password | invalid |
   And I press "Log in"
   Then I should be on the sessions page
-  And I should see "Invalid email address or password."
+  And I should see "Your account could not be authenticated."
 
-Scenario: Authenticating with valid details 
-  Given a user exists with email_address: "foo@example.com", password: "secret"
+Scenario: Trying to authenticate an account that has not been verified
   When I am on the login page
   And I fill in the following:
     | Email Address | foo@example.com |
     | Password | secret |
   And I press "Log in"
-  Then I should be on the home page
-  And I should see "Logged in successfully."
-  And I should be logged in
+  Then I should be on the sessions page
+  And I should see "Your account could not be authenticated."
+  And I should not be logged in
 
 Scenario: Authenticated users should see a log out link
   Given I am logged in
@@ -66,3 +54,25 @@ Scenario: I should be able to log out of the application
   Then I should be on the home page
   And I should see "You have been logged out."
   And I should not be logged in
+  
+Scenario: Authenticating with invalid email address
+  Given I am not logged in
+  And a user exists with email_address: "bar@example.com", password: "secret"
+  When I am on the login page
+  And I fill in the following:
+    | Email Address | foo@example.com |
+    | Password | secret |
+  And I press "Log in"
+  Then I should be on the sessions page
+  And I should see "Your account could not be authenticated."
+  
+Scenario: Authenticating with valid details 
+  Given a user exists who is verified
+  And I am on the login page
+  And I fill in the following:
+    | Email Address | foo@bar.com |
+    | Password | secret |
+  And I press "Log in"
+  #Then I should be on the home page
+  Then I should see "Logged in successfully."
+  And I should be logged in

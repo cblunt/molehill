@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Logged in successfully."
       redirect_to_target_or_default(root_url)
     else
-      flash.now[:error] = "Invalid email address or password."
+      flash.now[:error] = "Your account could not be authenticated."
       render :action => 'new'
     end
   end

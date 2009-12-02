@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   def self.authenticate(email, pass)
     user = find_by_email_address(email)
-    return user if user && user.matching_password?(pass)
+    return user if user && user.matching_password?(pass) && user.verified?
   end
   
   def verify_with_key(key)
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   def reset_verification
     self.verified_at = nil
     self.verification_key = Digest::SHA2.hexdigest("#{Time.now} #{rand(1000)}")
+  end
+  
+  def verified?
+    !self.verified_at.nil?
   end
   
   private
