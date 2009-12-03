@@ -20,6 +20,9 @@ module NavigationHelpers
     when /the posts page/i
       posts_path(params)
 
+    when /the create posts page/i
+      posts_path(params)
+
     when /the login page/i
       login_path(params)
       

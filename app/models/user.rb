@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   before_create :reset_verification
   before_save :prepare_password
+
+  has_many :posts
   
   validates_uniqueness_of :email_address, :allow_blank => true
   validates_format_of :email_address, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i

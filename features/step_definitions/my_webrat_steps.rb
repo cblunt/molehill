@@ -1,5 +1,13 @@
+# I try to post to the posts page
+# I try to put to the users page
+When /^(?:|I )(?:|try to) (\w+) (?:|to )(.+)$/ do |method, page_name|
+  method = :get if method == "visit"
+
+  visit path_to(page_name), method.to_sym
+end
+
 # I visit verify page with "id:10, key:jnkinjkn"
-When /^(?:|I )visit (.+) with (.+)$/ do |page_name, param_string|
+When /^(?:|I) (?:|try to )visit (.+) with (.+)$/ do |page_name, param_string|
   params = {}
   param_string.split(",").each do |match|
     parts = match.split(":") 
