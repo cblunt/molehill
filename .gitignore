@@ -4,3 +4,4 @@ config/database.yml
 db/*.sqlite*
 log/*.log
 coverage/*
+features_coverage/*
