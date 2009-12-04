@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "rspec", :lib => false
   config.gem "rspec-rails", :lib => false
   config.gem "factory_girl", :source => "http://gemcutter.org"
+  config.gem "faker"
   config.gem "cucumber"
   config.gem "webrat"
   config.gem "will_paginate", :source => "http://gemcutter.org"

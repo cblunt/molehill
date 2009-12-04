@@ -11,7 +11,7 @@ Scenario: Users should see the new post form
   And there should be "textarea#post_body" within "form#new_post"
   And there should be "input[value='Post Case']" within "form#new_post"
 
-Scenario: Publishing a new post
+Scenario: Publishing a new post should add the post and display it on the homepage
   Given I am logged in
   And I am on the home page
   When I fill in "post_body" with "Just reporting some crazy bug I found in your application!"
@@ -23,8 +23,14 @@ Scenario: Publishing a new post
   And there should be a "li.post" within "ul#posts"
   And I should see "Just reporting some crazy bug I found in your application!"
 
-Scenario: Publishing a new post when not logged in should throw an error
+Scenario: Publishing a new post when not logged in redirect to the login page
   Given I am not logged in
   And I try to post to the posts page
   Then I should be on the login page
   And I should see "You must first log in or sign up before accessing this page."
+
+Scenario: Trying to publish an empty post should display an error
+  Given I am logged in
+  And I press "Post Case"
+  Then I should be on the posts page
+  And I should see "It looks like your post couldn't be saved."
