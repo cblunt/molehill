@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203134653) do
+ActiveRecord::Schema.define(:version => 20091204135704) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20091203134653) do
     t.datetime "updated_at"
     t.datetime "verified_at"
     t.string   "verification_key"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

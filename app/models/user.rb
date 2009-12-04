@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   before_save :prepare_password
 
   has_many :posts
+  has_many :votes
+  has_many :scored_posts, :through => :votes, :source => :post
   
   validates_uniqueness_of :email_address, :allow_blank => true
   validates_format_of :email_address, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
@@ -36,6 +38,14 @@ class User < ActiveRecord::Base
     !self.verified_at.nil?
   end
   
+  def promote(post)
+    self.votes.create(:post => post, :score => 1)
+  end
+
+  def demote(post)
+    self.votes.create(:post => post, :score => -1)
+  end
+
   private
   
   def prepare_password

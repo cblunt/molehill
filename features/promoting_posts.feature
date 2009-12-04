@@ -19,6 +19,22 @@ Scenario: Users should see a promote link if they have not yet promoted or demot
   And I have not demoted "the post"
   Then I should see "Promote" within "li.post:first"
 
+Scenario: Users should be able to promote a post
+  Given I am logged in
+  And a post "the post" exists
+  And I am on the home page
+  And I promote "the post"
+  Then I should be on the home page
+  And I should see "You promoted the post"
+
+Scenario: Users should be able to demote a post
+  Given I am logged in
+  And a post "the post" exists
+  And I am on the home page
+  And I demote "the post"
+  Then I should be on the home page
+  And I should see "You demoted the post"
+
 Scenario: Users should see a message if they have already promoted the post
   Given I am logged in
   And a post "the post" exists
