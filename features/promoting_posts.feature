@@ -11,12 +11,10 @@ Scenario: Guests should not see a promote link
   Then I should see a list of posts
   And I should not see "Promote" within "li.post"
 
-Scenario: Users should see a promote link if they have not yet promoted or demoted the post
+Scenario: Users should see a promote link if they have not yet promoted the post
   Given I am logged in
   And a post "the post" exists
   And I am on the home page
-  And I have not promoted "the post"
-  And I have not demoted "the post"
   Then I should see "Promote" within "li.post:first"
 
 Scenario: Users should be able to promote a post
@@ -24,27 +22,13 @@ Scenario: Users should be able to promote a post
   And a post "the post" exists
   And I am on the home page
   And I promote "the post"
-  Then I should be on the home page
-  And I should see "You promoted the post"
-
-Scenario: Users should be able to demote a post
-  Given I am logged in
-  And a post "the post" exists
-  And I am on the home page
-  And I demote "the post"
-  Then I should be on the home page
-  And I should see "You demoted the post"
+  Then a vote should exist with score: 1
 
 Scenario: Users should see a message if they have already promoted the post
   Given I am logged in
   And a post "the post" exists
-  And I am on the home page
   And I have promoted "the post"
-  Then I should see "You promoted this post" within "li.post:first"
-
-Scenario: Users should see a message if they have already demoted the post
-  Given I am logged in
-  And a post "the post" exists
   And I am on the home page
-  And I have demoted "the post"
-  Then I should see "You demoted this post" within "li.post:first"
+  Then a vote "the vote" should exist with score: 1, user_id: 1
+  And my promoted posts should include "the post"
+  And I should see "You promoted this post" within "li.post:first"

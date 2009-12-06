@@ -36,3 +36,10 @@ Scenario: Guests should not see the new post entry form
   When I am on the home page
   Then there should not be "form#new_post"
   And there should not be "input[value='Post Case']"
+
+Scenario: Guests should be able to see a post's score
+  Given I am not logged in
+  And a post "post" exists
+  And post "post" has a score of 5
+  And I am on the home page
+  Then I should see "Score: 5" within "li.post:first"

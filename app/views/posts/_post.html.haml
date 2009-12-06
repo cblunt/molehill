@@ -1,1 +1,12 @@
-%li.post= h post.body
+%li.post
+  %p= h post.body
+
+  %p#score
+    = "Score: #{post.score}"
+
+  - if logged_in?
+    - if current_user.promoted?(post)
+      = "You promoted this post"
+    - else
+      = link_to "Promote"
+      this post.

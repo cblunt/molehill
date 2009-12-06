@@ -4,4 +4,6 @@ class Vote < ActiveRecord::Base
 
   validates_presence_of :user_id, :post_id, :score
   validates_numericality_of :score, :between => -1..1
+
+  named_scope :promotions, :conditions => ['score >= ?', 1]
 end

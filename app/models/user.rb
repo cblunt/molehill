@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :votes
+  has_many :promoted_posts, :through => :votes, :source => :post, :conditions => ["votes.score >= ?", 1]
   has_many :scored_posts, :through => :votes, :source => :post
   
   validates_uniqueness_of :email_address, :allow_blank => true
@@ -42,8 +43,12 @@ class User < ActiveRecord::Base
     self.votes.create(:post => post, :score => 1)
   end
 
-  def demote(post)
-    self.votes.create(:post => post, :score => -1)
+  def promoted?(post)
+    self.promoted_posts.include? post
+  end
+
+  def voted?(post)
+    self.scored_posts.include? post
   end
 
   private
