@@ -4,7 +4,7 @@ module PostsHelper
 
     # Extract each hash tag and replace it as a link
     body.scan(/#[\w\-]+/).each do |tag|
-      out.gsub! /#{tag}/, link_to(tag, posts_path, :title => tag)
+      out.gsub! /#{tag}/, link_to(tag, posts_path(:tags => [tag]), :title => tag)
     end
 
     out

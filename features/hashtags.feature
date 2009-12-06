@@ -23,6 +23,14 @@ Scenario: Posting a case with new hashtags should create new hashtag records
       | this is a post that will be #matched |
       | this is a post that will be #unmatched |
     Then 2 posts should exist
-    Given I visit the home page with "search[terms]=matched"
-    Then I should see "this is a post that will be #matched"
+    Given I am on the home page
+    And I follow "#matched"
+    Then I should be on the posts page
+    And I should see "this is a post that will be #matched"
     And I should not see "this is a post that will be #unmatched"
+    Given I am on the home page
+    And I follow "#unmatched"
+    Then I should be on the posts page
+    And I should not see "this is a post that will be #matched"
+    And I should see "this is a post that will be #unmatched"
+
