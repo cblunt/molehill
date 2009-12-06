@@ -11,6 +11,12 @@ Scenario: Guests should not see a promote link
   Then I should see a list of posts
   And I should not see "Promote" within "li.post"
 
+Scenario: A user should be able to see if they have voted on a post
+  Given I am logged in
+  And a post "post" exists
+  And I promote "post"
+  Then I should have voted on "post"
+
 Scenario: Users should see a promote link if they have not yet promoted the post
   Given I am logged in
   And a post "the post" exists

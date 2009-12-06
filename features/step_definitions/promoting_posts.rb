@@ -23,3 +23,7 @@ end
 Then /^my promoted posts should include "#{capture_model}"$/ do |model|
   controller.current_user.promoted_posts.should include model!(model)
 end
+
+Then /^I should have voted on "#{capture_model}"$/ do |model|
+  controller.current_user.voted?(model!(model)).should be_true
+end
