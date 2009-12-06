@@ -2,7 +2,6 @@
 # I try to put to the users page
 When /^(?:|I )(?:|try to) (\w+) (?:|to )(.+)$/ do |method, page_name|
   method = :get if method == "visit"
-
   visit path_to(page_name), method.to_sym
 end
 

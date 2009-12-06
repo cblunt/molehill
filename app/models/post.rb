@@ -1,8 +1,12 @@
 class Post < ActiveRecord::Base
+  acts_as_taggable
+
   belongs_to :user
   has_many :votes
 
   validates_presence_of :body, :user_id
+
+  before_save :extract_hashtags
 
   def score
     score = 0
@@ -11,5 +15,10 @@ class Post < ActiveRecord::Base
     end
 
     score
+  end
+
+protected
+  def extract_hashtags
+    self.tag_list = self.body.scan /#[\w\-]+/
   end
 end
