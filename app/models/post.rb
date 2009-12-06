@@ -17,6 +17,10 @@ class Post < ActiveRecord::Base
     score
   end
 
+  def scored?
+    ! self.votes.count.zero?
+  end
+
 protected
   def extract_hashtags
     self.tag_list = self.body.scan /#[\w\-]+/

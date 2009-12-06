@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     fetch_posts
+    @post = current_user.posts.new if logged_in?
   end
 
   def create

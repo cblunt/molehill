@@ -1,7 +1,10 @@
 - if logged_in?
-  = form_for Post.new, :id => "new_post" do |f|
-    = f.text_area :body
-    = f.submit "Post Case"
+  %h2 Post a feature or issue
+  - form_for @post, :id => "new_post" do |f|
+    %fieldset
+      %ol
+        %li= f.text_area :body, :rows => 5
+        %li= f.submit "Post Case"
 
 %h2 Recent Posts
 

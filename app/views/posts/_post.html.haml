@@ -1,8 +1,9 @@
 %li.post
   %p= post_body post
 
-  %p#score
-    = "Score: #{post.score}"
+  - if post.scored?
+    %p#score
+      = "Score: #{post.score}"
 
   - if logged_in?
     - if current_user.promoted?(post)
