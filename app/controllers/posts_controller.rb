@@ -40,9 +40,9 @@ protected
     params[:page] ||= 1
 
     if params[:tags]
-      @posts = Post.find_tagged_with(params[:tags]).paginate(:page => params[:page], :per_page => 10)
+      @posts = Post.find_tagged_with(params[:tags]).paginate(:page => params[:page], :per_page => 10, :order => "votes_count DESC, created_at DESC")
     else
-      @posts = Post.paginate(:all, :page => params[:page], :per_page => 10)
+      @posts = Post.paginate(:all, :page => params[:page], :per_page => 10, :order => "votes_count DESC, created_at DESC")
     end
   end
 end

@@ -4,13 +4,26 @@ Feature: Viewing Posts
   As a guest
   I want to see a list of all posts on the homepage ordered by date
 
-Scenario: Guests should see the latest posts
+Scenario: People should see the latest posts if no posts have been promoted
   Given I am not logged in
   And 20 posts exist
   When I am on the home page
   Then I should see "Recent Posts"
   And I should see a list of posts
   And I should see the 10 most recent posts
+
+Scenario: People should see the most promoted posts first
+  Given I am logged in
+  And 3 posts exist
+  And another post "promoted post" exists with body: "the promoted post"
+  And post "promoted post" has a score of 3
+  When I am on the home page
+  Then I should see "Recent Posts"
+  And I should see a list of posts
+  And I should see "the promoted post" within "li.post[1]"
+  And I should see "Some random post" within "li.post[2]"
+  And I should see "Some random post" within "li.post[3]"
+  And I should see "Some random post" within "li.post[4]"
 
 Scenario: Guests should not see a next page link when 10 or fewer posts exist
   Given I am not logged in

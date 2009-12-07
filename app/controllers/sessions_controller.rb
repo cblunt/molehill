@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email_address], params[:password])
     if user
       session[:user_id] = user.id
-      flash[:notice] = "Logged in successfully."
+      flash[:success] = "Logged in successfully."
       redirect_to_target_or_default(root_url)
     else
       flash.now[:error] = "Your account could not be authenticated."
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "You have been logged out."
+    flash[:success] = "You have been logged out."
     redirect_to root_url
   end
 end

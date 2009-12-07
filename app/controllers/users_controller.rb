@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      flash[:notice] = "Thank you for signing up! Please check your emails for a verification link."
+      flash[:success] = "Thank you for signing up! Please check your emails for a verification link."
       redirect_to root_url
     else
       render :action => 'new'
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      flash[:notice] = "Your account could not be verified."
+      flash[:error] = "Your account could not be verified."
       redirect_to root_url
     end
   end

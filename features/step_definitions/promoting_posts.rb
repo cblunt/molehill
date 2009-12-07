@@ -4,7 +4,7 @@ end
 
 Given /^#{capture_model} has a score of (\d)$/ do |model, score|
   post = model!(model)
-  user = Factory(:user)
+  user = Factory(:user, :email_address => Faker::Internet.email)
 
   score.to_i.times do
     user.promote model!(model)
