@@ -26,7 +26,6 @@ a {
     margin: 10px 0 0 0;
     font-weight: normal; }
   #header ol#navigation {
-    list-style-type: none;
     float: right; }
     #header ol#navigation li {
       float: left; }
@@ -60,12 +59,18 @@ a {
 .fieldWithErrors {
   display: inline; }
 
+ol, ul {
+  list-style-type: none;
+  padding-left: 10px; }
+  ol li p, ul li p {
+    padding: 0 0;
+    margin: 0 0 0.5em 0; }
+
 form fieldset {
   border: none; }
   form fieldset ol {
     padding: 0 0;
-    margin: 0 0;
-    list-style-type: none; }
+    margin: 0 0; }
 
 #errorExplanation {
   width: 400px;

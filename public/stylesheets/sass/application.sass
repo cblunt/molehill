@@ -31,7 +31,6 @@ a
     :font-weight normal
 
   ol#navigation
-    :list-style-type none
     :float right
 
     li
@@ -66,6 +65,15 @@ a
 .fieldWithErrors
   :display inline
 
+ol, ul
+  :list-style-type none
+  :padding-left 10px
+
+  li
+    p
+      :padding 0 0 
+      :margin 0 0 0.5em 0
+
 form
   fieldset
     :border none
@@ -73,7 +81,6 @@ form
     ol
       :padding 0 0
       :margin 0 0
-      :list-style-type none
 
 #errorExplanation
   :width 400px
@@ -81,7 +88,7 @@ form
   :padding 0
   :padding-bottom 12px
   :margin-bottom 20px
-  :background-color #f0f0f0
+  :background-color #f0f0f0 
   h2
     :text-align left
     :padding 5px 5px 5px 15px
