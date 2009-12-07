@@ -6,7 +6,11 @@
         %li= f.text_area :body, :rows => 5
         %li= f.submit "Post Case"
 
-%h2 Recent Posts
+%h2
+  - if params[:tags].empty?
+    Recent Posts
+  - else
+    = "All cases matching #{params[:tags].join(", ")}"
 
 %ul#posts
   = render :partial => "post", :collection => @posts
