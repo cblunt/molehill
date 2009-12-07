@@ -1,5 +1,7 @@
 %li.post
-  %p= post_body post
+  %p
+    %strong= "#{post.user.username}"
+    = post_body post
 
   - if post.scored?
     %p#score

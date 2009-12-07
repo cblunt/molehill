@@ -44,7 +44,7 @@ Scenario: People should be able to clear filters
   Given I am on the home page
   And I follow "#matched"
   Then I should be on the posts page
-  And I should see "Show all cases"
+  And I should see "Clear search filters"
   When I follow "Clear search filters"
   Then I should be on the posts page
   And I should see "Recent Posts"

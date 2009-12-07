@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email_address, :password, :password_confirmation
+  attr_accessible :username, :email_address, :password, :password_confirmation
   
   attr_accessor :password
 
@@ -11,14 +11,16 @@ class User < ActiveRecord::Base
   has_many :promoted_posts, :through => :votes, :source => :post, :conditions => ["votes.score >= ?", 1]
   has_many :scored_posts, :through => :votes, :source => :post
   
-  validates_uniqueness_of :email_address, :allow_blank => true
+  validates_uniqueness_of :username
+  validates_length_of :username, :minimum => 3
+  validates_uniqueness_of :email_address
   validates_format_of :email_address, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
   
-  def self.authenticate(email, pass)
-    user = find_by_email_address(email)
+  def self.authenticate(login, pass)
+    user = find_by_username(login) || find_by_email_address(login)
     return user if user && user.matching_password?(pass) && user.verified?
   end
   

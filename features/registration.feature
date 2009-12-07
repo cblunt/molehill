@@ -13,14 +13,27 @@ Scenario: Show the registration page
   And I am on the login page
   When I follow "Sign up!"
   Then I should be on the signup page
+  And I should see "Username" within "form"
   And I should see "Email Address" within "form"
   And I should see "Password" within "form"
   And I should see "Confirm Password" within "form"
   And there should be an "input[value='Sign up']" within "form"
 
+Scenario: Attempting to register an account with an invalid username throws an error
+  Given I am on the signup page
+  When I fill in the following:
+    | Username | in |
+    | Email Address | joe.bloggs@company.com |
+    | Password | secret |
+    | Confirm Password | secret |
+  And I press "Sign up"
+  Then I should be on the users page
+  And I should see "Username is too short"
+
 Scenario: Attempting to register an account with an invalid email address
   Given I am on the signup page
   When I fill in the following:
+    | Username | valid |
     | Email Address | oops |
     | Password | secret |
     | Confirm Password | secret |
@@ -31,6 +44,7 @@ Scenario: Attempting to register an account with an invalid email address
 Scenario: Attempting to register an account with an invalid password
   Given I am on the signup page
   When I fill in the following:
+    | Username | valid |
     | Email Address | oops |
     | Password | |
     | Confirm Password | |
@@ -41,6 +55,7 @@ Scenario: Attempting to register an account with an invalid password
 Scenario: Attempting to register an account with unmatched passwords
   Given I am on the signup page
   When I fill in the following:
+    | Username | valid |
     | Email Address | foo@bar.com |
     | Password | secret |
     | Confirm Password | notsecret |
@@ -51,11 +66,12 @@ Scenario: Attempting to register an account with unmatched passwords
 Scenario: Registering with valid details creates a unverified user
   Given I am on the signup page
   When I fill in the following:
+    | Username | foobar |
     | Email Address | foo@bar.com |
     | Password | secret |
     | Confirm Password | secret |
   And I press "Sign up"
-  Then a user should exist with email_address: "foo@bar.com", verified_at: nil
+  Then a user should exist with username: "foobar", email_address: "foo@bar.com", verified_at: nil
   And I should be on the home page
   And I should not be logged in
   And I should see "Thank you for signing up! Please check your emails for a verification link."
@@ -63,6 +79,7 @@ Scenario: Registering with valid details creates a unverified user
 Scenario: Verifying a newly created account
   Given I am on the signup page
   When I fill in the following:
+    | Username | foobar |
     | Email Address | foo@bar.com |
     | Password | secret |
     | Confirm Password | secret |
@@ -75,7 +92,6 @@ Scenario: Verifying a newly created account
   And I should be logged in
   And I should be on the home page
   
-
 Scenario: The verification key is wrong
   Given a user exists with email_address: "foo@bar.com", password: "secret" 
   And I visit the verification page with id:8, verification_key:invalid

@@ -12,6 +12,16 @@ Given /^I am logged in$/ do
   click_button("Log in")
 end
 
+Given /^I am logged in with #{capture_fields}$/ do |fields|
+  @current_user = Factory(:user, fields)
+  @current_user.verify_with_key(@current_user.verification_key)
+
+  visit login_path
+  fill_in("email_address", :with => @currnet_user.email_address)
+  fill_in("password", :with => "secret")
+  click_button("Log in")
+end
+
 Given /^a user exists who is verified$/ do
   user = Factory(:user)
   user.verify_with_key(user.verification_key)  

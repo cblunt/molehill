@@ -12,6 +12,15 @@ Scenario: People should see the latest posts if no posts have been promoted
   And I should see a list of posts
   And I should see the 10 most recent posts
 
+Scenario: A post should show its author
+  Given I am logged in
+  And I am on the home page
+  When I fill in "post_body" with "Just reporting some crazy bug I found in your application!"
+  And I press "Post Case"
+  Then I should be on the posts page
+  And I should see "joebloggs"
+  And I should see "Just reporting some crazy bug I found in your application!"
+
 Scenario: People should see the most promoted posts first
   Given I am logged in
   And 3 posts exist
