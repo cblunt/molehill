@@ -3,11 +3,17 @@ Feature: Logging in and out of the application
   As a user
   I want to be able to log in to and out of my account
 
-Scenario: Guests should see a log in link
+Scenario: Guests should see a log in and register link
   Given I am not logged in
   When I am on the home page
   Then I should see "Log in"
+  And I should see "Register"
 
+Scenario: Clicking register should go to the sign up page
+  Given I am not logged in
+  When I am on the home page
+  And I follow "Register"
+  Then I should be on the signup page
 Scenario: Clicking log in should take me to the login page
   Given I am not logged in
   When I am on the home page
@@ -76,3 +82,8 @@ Scenario: Authenticating with valid details
   #Then I should be on the home page
   Then I should see "Logged in successfully."
   And I should be logged in
+
+Scenario: I should see my name when logged in
+  Given I am logged in 
+  When I am on the home page
+  Then I should see my email address

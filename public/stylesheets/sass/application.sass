@@ -4,7 +4,7 @@ body
   :background-color = !primary_color
   :font
     :family Verdana, Helvetica, Arial
-    :size 14px
+    :size 13px
 
 a
   :color #3366ff
@@ -16,13 +16,34 @@ a
   :height 0
   :overflow hidden
 
-#container
+.container
+  :clear both
   :width 600px
   :margin 0 0 0 20px
-  :background #fff
-  :padding 20px 40px
-  :border solid 1px #909090
   :margin-top 20px
+
+#header
+  :width 680px
+
+  h1
+    :float left
+    :margin 10px 0 0 0
+    :font-weight normal
+
+  ol#navigation
+    :list-style-type none
+    :float right
+
+    li
+      :float left
+    a, span
+      :display block
+      :padding 5px 5px
+
+#content
+  :padding 20px 40px
+  :background #fff
+  :border solid 1px #909090
 
 #flash_notice,
 #flash_success,

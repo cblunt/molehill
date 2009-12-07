@@ -24,3 +24,7 @@ Then /^I should( not)? be logged in/ do |flag|
     controller.current_user.should be_nil
   end
 end
+
+Then /^I should see my email address/ do
+  Then "I should see \"#{controller.current_user.email_address}\""
+end

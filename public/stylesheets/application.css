@@ -1,7 +1,7 @@
 body {
   background-color: #fefeee;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px; }
+  font-size: 13px; }
 
 a {
   color: #3366ff; }
@@ -13,13 +13,31 @@ a {
   height: 0;
   overflow: hidden; }
 
-#container {
+.container {
+  clear: both;
   width: 600px;
   margin: 0 0 0 20px;
-  background: #fff;
-  padding: 20px 40px;
-  border: solid 1px #909090;
   margin-top: 20px; }
+
+#header {
+  width: 680px; }
+  #header h1 {
+    float: left;
+    margin: 10px 0 0 0;
+    font-weight: normal; }
+  #header ol#navigation {
+    list-style-type: none;
+    float: right; }
+    #header ol#navigation li {
+      float: left; }
+    #header ol#navigation a, #header ol#navigation span {
+      display: block;
+      padding: 5px 5px; }
+
+#content {
+  padding: 20px 40px;
+  background: #fff;
+  border: solid 1px #909090; }
 
 #flash_notice,
 #flash_success,

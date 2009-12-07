@@ -3,22 +3,29 @@
   
   %head
     %title
-      = h(yield(:title) || "Untitled")
+      = h(yield(:title) || "Molehill: Simple Issue Tracking")
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application'
     = yield(:head)
   
   %body
-    #container
+    #header.container
+      %h1= h(yield(:title) || "Molehill")
+
+      %ol#navigation
+        - if logged_in?
+          %li
+            %span= current_user.email_address
+          %li= link_to "Log out", logout_path
+        - else
+          %li= link_to "Log in", login_path
+          %li= link_to "Register", signup_path
+
+    #content.container
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       
       - if show_title?
         %h1=h yield(:title)
 
-      - if logged_in?
-        = link_to "Log out", logout_path
-      - else
-        = link_to "Log in", login_path
-      
       = yield
