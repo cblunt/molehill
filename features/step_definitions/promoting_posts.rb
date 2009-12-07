@@ -1,7 +1,3 @@
-Given /^I (promote|demote) "#{capture_model}"$/ do |method, model|
-  controller.current_user.send method.to_sym, model!(model)
-end
-
 Given /^I have (promoted|demoted) "#{capture_model}"$/ do |method, model|
   controller.current_user.send method.chop.to_sym, model!(model)
 end

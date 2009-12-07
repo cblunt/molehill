@@ -38,11 +38,18 @@ Scenario: Guests should not see the new post entry form
   And there should not be "input[value='Post Case']"
 
 Scenario: An unscored post should not display its score
-  Given I am not logged in
+  Given I am logged in
   And a post "post" exists
   And post "post" has no score
   And I am on the home page
   Then I should not see "Score: 0" within "li.post:first"
+
+Scenario: A guest should see a link offering to log in to score a post
+  Given I am not logged in
+  And a post "post" exists
+  And post "post" has no score
+  And I am on the home page
+  Then I should see "Log in to promote this case" within "li.post:first"
 
 Scenario: Guests should be able to see a post's score
   Given I am not logged in

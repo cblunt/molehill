@@ -9,5 +9,6 @@
     - if current_user.promoted?(post)
       = "You promoted this post"
     - else
-      = link_to "Promote"
-      this post.
+      = "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
+  - else
+    = "#{link_to "Log in", login_path} to promote this case."

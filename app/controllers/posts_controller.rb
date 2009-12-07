@@ -19,7 +19,23 @@ class PostsController < ApplicationController
     end
   end
 
-protected
+  def promote
+    fetch_post
+
+    @current_user.promote @post
+    redirect_to posts_path and return 
+  end
+
+protected 
+  def fetch_post
+    @post = Post.find_by_id(params[:id])
+
+    if @post.nil?
+      flash[:notice] = "The case could not be found."
+      redirect_to posts_path and return
+    end
+  end
+
   def fetch_posts
     params[:page] ||= 1
 

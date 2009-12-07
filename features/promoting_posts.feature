@@ -14,7 +14,7 @@ Scenario: Guests should not see a promote link
 Scenario: A user should be able to see if they have voted on a post
   Given I am logged in
   And a post "post" exists
-  And I promote "post"
+  And I have promoted "post"
   Then I should have voted on "post"
 
 Scenario: Users should see a promote link if they have not yet promoted the post
@@ -27,7 +27,10 @@ Scenario: Users should be able to promote a post
   Given I am logged in
   And a post "the post" exists
   And I am on the home page
-  And I promote "the post"
+  Given I follow "Promote" within "li.post:first"
+  Then I should be on the posts page
+  And my promoted posts should include "the post"
+  And I should see "You promoted this post" within "li.post:first"
   Then a vote should exist with score: 1
 
 Scenario: Users should see a message if they have already promoted the post
