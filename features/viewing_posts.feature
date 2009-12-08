@@ -85,3 +85,15 @@ Scenario: Guests should be able to see an individual post should just show that 
   And a post "post" exists with id: 1, body: "This is a post"
   When I visit the post page with id:1
   Then I should see "This is a post"
+
+Scenario: A home link should exist on any page
+  Given I am not logged in
+  And I am on the home page
+  Then I should see "Home"
+  When I follow "Home"
+  Then I should be on the home page
+  Given I am logged in
+  And I am on the home page
+  Then I should see "Home"
+  When I follow "Home"
+  Then I should be on the home page

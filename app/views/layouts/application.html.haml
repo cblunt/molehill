@@ -16,8 +16,10 @@
         - if logged_in?
           %li
             %span= current_user.email_address
+          %li= link_to "Home", root_path
           %li= link_to "Log out", logout_path
         - else
+          %li= link_to "Home", root_path
           %li= link_to "Log in", login_path
           %li= link_to "Register", signup_path
 
