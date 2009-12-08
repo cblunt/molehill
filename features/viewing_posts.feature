@@ -79,3 +79,9 @@ Scenario: Guests should be able to see a post's score
   And post "post" has a score of 5
   And I am on the home page
   Then I should see "Score: 5" within "li.post:first"
+
+Scenario: Guests should be able to see an individual post should just show that post
+  Given I am not logged in
+  And a post "post" exists with id: 1, body: "This is a post"
+  When I visit the post page with id:1
+  Then I should see "This is a post"

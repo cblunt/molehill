@@ -1,9 +1,13 @@
 class PostsController < ApplicationController
-  skip_before_filter :login_required, :only => [:index]
+  skip_before_filter :login_required, :only => [:index, :show]
 
   def index
     fetch_posts
     @post = current_user.posts.new if logged_in?
+  end
+
+  def show
+    fetch_post
   end
 
   def create

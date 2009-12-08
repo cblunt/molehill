@@ -23,6 +23,12 @@ Scenario: Users should see a promote link if they have not yet promoted the post
   And I am on the home page
   Then I should see "Promote" within "li.post:first"
 
+Scenario: Trying to promote an invalid post displays an error
+  Given I am logged in
+  When I visit the post page with id:1
+  Then I should be on the posts page
+  And I should see "The case could not be found"
+
 Scenario: Users should be able to promote a post
   Given I am logged in
   And a post "the post" exists
