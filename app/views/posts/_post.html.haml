@@ -9,10 +9,12 @@
       = "Score: #{post.score}"
 
   - if logged_in?
-    - if current_user.promoted?(post)
-      = "You promoted this post"
-    - else
-      = "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
+
+    %div.promote
+      - if current_user.promoted?(post)
+        = "You promoted this post"
+      - else
+        = "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
 
     - if post.user == current_user
-      = "Mark as #{link_to "Completed"} or #{link_to "Declined"}."
+      %p.tasks= "Mark as #{link_to "Completed"} or #{link_to "Declined"}."

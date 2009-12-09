@@ -75,6 +75,13 @@ ol, ul {
   margin-bottom: 1em;
   padding-bottom: 1em;
   border-bottom: 1px solid #e0e0e0; }
+#posts p {
+  margin-bottom: 1.5em; }
+#posts p.tasks {
+  text-align: right;
+  margin-bottom: 0.5em; }
+#posts div.promote {
+  float: left; }
 
 form fieldset {
   border: none; }
