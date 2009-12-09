@@ -1,5 +1,7 @@
 body {
-  background-color: #fefeee;
+  background-color: #efefff;
+  background-image: url(/images/page_background.jpg);
+  background-repeat: repeat-x;
   font-family: Verdana, Helvetica, Arial;
   font-size: 13px; }
 
