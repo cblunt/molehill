@@ -1,6 +1,6 @@
 - if logged_in?
   %h2 Post a feature or issue
-  - form_for @post, :id => "new_post" do |f|
+  - remote_form_for @post, :id => "new_post" do |f|
     %fieldset
       %ol
         %li= f.text_area :body, :rows => 5

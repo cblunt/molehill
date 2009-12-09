@@ -15,11 +15,19 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "Your post was added."
-      redirect_to posts_path
+
+      respond_to do |format|
+        format.html { redirect_to posts_path }
+        format.js
+      end
     else
       flash[:error] = "It looks like your post couldn't be saved."
       fetch_posts
-      render :index
+
+      respond_to do |format|
+        format.html { render :index }
+        format.js
+      end
     end
   end
 
