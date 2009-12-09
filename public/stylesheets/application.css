@@ -83,6 +83,8 @@ ol, ul {
 #posts div.promote {
   float: left; }
 
+form textarea {
+  width: 100%; }
 form fieldset {
   border: none; }
   form fieldset ol {
