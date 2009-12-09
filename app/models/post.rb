@@ -21,6 +21,27 @@ class Post < ActiveRecord::Base
     ! self.votes.count.zero?
   end
 
+  def open?
+    self.completed_at.nil? && self.declined_at.nil?
+  end
+
+  def completed?
+    !self.completed_at.nil?
+  end
+
+  def declined?
+    !self.declined_at.nil?
+  end
+
+  def complete!
+    return false unless open?
+    update_attribute :completed_at, Time.now
+  end
+
+  def decline!
+    return false unless open?
+    update_attribute :declined_at, Time.now
+  end
 protected
   def extract_hashtags
     self.tag_list = self.body.scan /#[\w\-]+/

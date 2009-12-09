@@ -32,7 +32,9 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
   map.resources :posts,
-                :member => { :promote => :put }
+                :member => { :promote => :put,
+                             :complete => :put,
+                             :decline => :put }
 
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|

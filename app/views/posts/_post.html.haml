@@ -4,17 +4,19 @@
     %strong= "#{post.user.username}"
     = post_body post
 
-  - if post.scored?
-    %p#score
-      = "Score: #{post.score}"
+  %div.promote
+    - if post.scored?
+      %span#score= "Score: #{post.score}"
 
-  - if logged_in?
-
-    %div.promote
+    - if logged_in?
       - if current_user.promoted?(post)
         = "You promoted this post"
-      - else
+      - elsif post.open?
         = "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
 
-    - if post.user == current_user
-      %p.tasks= "Mark as #{link_to "Completed"} or #{link_to "Declined"}."
+    - if post.completed?
+      %p.tasks= "Completed #{distance_of_time_in_words_to_now(post.completed_at)} ago"
+    - elsif post.declined?
+      %p.tasks= "Declined #{distance_of_time_in_words_to_now(post.declined_at)} ago"
+    - elsif logged_in? and post.user == current_user
+      %p.tasks= "Mark as #{link_to "Completed", complete_post_path(post), :method => :put} or #{link_to "Declined", decline_post_path(post), :method => :put}."

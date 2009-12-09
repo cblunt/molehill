@@ -37,13 +37,42 @@ class PostsController < ApplicationController
   def promote
     fetch_post
 
-    @current_user.promote @post
+    current_user.promote @post
     redirect_to posts_path and return 
   end
 
+  def complete
+    fetch_post :scope_by_user => current_user
+
+    if @post.complete!
+      flash[:success] = "Case completed."
+    else
+      flash[:error] = "The case could not be completed."
+    end
+      
+    redirect_to posts_path and return 
+  end
+
+  def decline
+    fetch_post :scope_by_user => current_user
+
+    if @post.decline!
+      flash[:success] = "Case declined."
+    else
+      flash[:error] = "The case could not be declined."
+    end
+      
+    redirect_to posts_path and return 
+  end
+
+
 protected 
-  def fetch_post
-    @post = Post.find_by_id(params[:id])
+  def fetch_post options = {}
+    if options[:scope_by_user]
+      @post = options[:scope_by_user].posts.find_by_id(params[:id])
+    else
+      @post = Post.find_by_id(params[:id])
+    end
 
     if @post.nil?
       flash[:notice] = "The case could not be found."

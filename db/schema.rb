@@ -9,14 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091207201935) do
+ActiveRecord::Schema.define(:version => 20091209225910) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "votes_count", :default => 0
+    t.integer  "votes_count",  :default => 0
+    t.datetime "completed_at"
+    t.datetime "declined_at"
   end
 
   create_table "taggings", :force => true do |t|

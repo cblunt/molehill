@@ -33,7 +33,7 @@ Scenario: Users should be able to promote a post
   Given I am logged in
   And a post "the post" exists
   And I am on the home page
-  Given I follow "Promote" within "li.post:first"
+  When I follow "Promote" within "li.post:first"
   Then I should be on the posts page
   And my promoted posts should include "the post"
   And I should see "You promoted this post" within "li.post:first"
@@ -47,3 +47,20 @@ Scenario: Users should see a message if they have already promoted the post
   Then a vote "the vote" should exist with score: 1, user_id: 1
   And my promoted posts should include "the post"
   And I should see "You promoted this post" within "li.post:first"
+
+Scenario: A completed case should not show a promotion link
+  Given I am logged in
+  And a post "post" exists with completed_at: "1.day.ago"
+  And "post" belongs to me
+  And post "post" is complete
+  When I am on the home page
+  Then post "post" should not be open
+  And I should not see "Promote" within "li.post:first" 
+
+Scenario: A declined case should not show a promotion link
+  Given I am logged in
+  And a post "post" exists with declined_at: "1.day.ago"
+  And "post" belongs to me
+  And post "post" is declined
+  When I am on the home page
+  Then I should not see "Promote" within "li.post:first" 
