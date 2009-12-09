@@ -71,7 +71,7 @@ Scenario: A guest should see a link offering to log in to score a post
   And a post "post" exists
   And post "post" has no score
   And I am on the home page
-  Then I should see "Log in to promote this case" within "li.post:first"
+  Then I should not see "Log in to promote this case" within "li.post:first"
 
 Scenario: Guests should be able to see a post's score
   Given I am not logged in
