@@ -22,10 +22,13 @@ class PostsController < ApplicationController
       end
     else
       flash[:error] = "It looks like your post couldn't be saved."
-      fetch_posts
 
       respond_to do |format|
-        format.html { render :index }
+        format.html { 
+          fetch_posts
+          render :index 
+        }
+
         format.js
       end
     end

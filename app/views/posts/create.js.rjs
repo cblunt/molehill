@@ -1,6 +1,6 @@
 render_ajax_flash page
 
-if @post
+unless @post.new_record?
   page.insert_html :top, :posts, :partial => "post", :locals => {:post => @post}
   page[:post_body].text('').focus()
 end
