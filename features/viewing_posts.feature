@@ -97,3 +97,9 @@ Scenario: A home link should exist on any page
   Then I should see "Home"
   When I follow "Home"
   Then I should be on the home page
+
+Scenario: An avatar should be displayed next to posts
+  Given I am not logged in
+  And a post exists
+  When I am on the home page
+  Then there should be "img.gravatar" within "li.post:first"

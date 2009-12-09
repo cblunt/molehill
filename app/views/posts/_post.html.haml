@@ -1,4 +1,5 @@
 %li.post
+  = gravatar_image_tag post.user.email_address, {:size => 32} 
   %p
     %strong= "#{post.user.username}"
     = post_body post
