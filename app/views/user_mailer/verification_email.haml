@@ -1,7 +1,11 @@
+Hi!
+
+
+= "You're email address was recently used to register an account at #{root_url}"
 To activate your account, please click on the following link:
 
-= link_to "Verify Your Account", verify_path(@user.id, @user.verification_key)
 
-= "or visit #{verify_path(@user.id, @user.verification_key)}" 
+= verify_url(@user.id, @user.verification_key)
+
 
 Thank you
