@@ -5,3 +5,4 @@ db/*.sqlite*
 log/*.log
 coverage/*
 features_coverage/*
+config/deploy.rb

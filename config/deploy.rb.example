@@ -1,0 +1,34 @@
+# This is an example deployment script for Capistrano. 
+# You will need to enter settings relevant to your
+# server.
+#
+# For more information on configuring Capistrano.
+set :application, "molehill"
+
+# Change to your git repository
+set :repository,  "git://github.com/cblunt/molehill.git"
+
+set :scm, :git
+set :branch, "master"
+set :deploy_via, :remote_cache
+# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+
+role :web, "{your server}" # Your HTTP server, Apache/etc
+role :app, "{your server}" # This may be the same as your `Web` server
+role :db,  "{your server}", :primary => true # This is where Rails migrations will run
+
+set :deploy_to, "/var/www/apps/#{application}"
+
+after 'deploy:update_code' , 'deploy:symlink_database'
+
+namespace :deploy do
+  desc "Restarting mod_rails"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+
+  desc "Symlink the database config file from shared directory to current release directory."
+  task :symlink_database do
+    run "ln -nsf #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
+end
