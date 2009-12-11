@@ -87,7 +87,7 @@ Scenario: Verifying a newly created account
   Then I should receive an email
   When I open the email
   Then I should see "Please verify your account" in the email subject
-  When I follow "Verify Your Account" in the email
+  When I click link 2 in the email
   Then I should see "Thank you for verifying your account!"
   And I should be logged in
   And I should be on the home page
