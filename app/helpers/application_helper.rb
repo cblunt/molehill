@@ -45,4 +45,8 @@ module ApplicationHelper
     image_tag gravatar_url_for(email, options), html_options
   end
 
+  def google_analytics_tags
+    APP_CONFIG['google_analytics_code'] if APP_CONFIG['google_analytics_code']
+  end
+
 end

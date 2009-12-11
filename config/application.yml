@@ -1,0 +1,8 @@
+# Set up application configuration constants for the current
+# environment.
+
+development:
+  google_analytics_code: Configure your Google Analytics code in config/application.yml
+
+test:
+  google_analytics_code: google_tracking_code
