@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def google_analytics_tags
-    APP_CONFIG['google_analytics_code'] if APP_CONFIG['google_analytics_code']
+    APP_CONFIG['google_analytics_code'] unless APP_CONFIG['google_analytics_code'].nil?
   end
 
 end

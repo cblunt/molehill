@@ -6,3 +6,6 @@ development:
 
 test:
   google_analytics_code: google_tracking_code
+
+cucumber:
+  google_analytics_code: google_tracking_code

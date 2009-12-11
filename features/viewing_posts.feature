@@ -103,3 +103,7 @@ Scenario: An avatar should be displayed next to posts
   And a post exists
   When I am on the home page
   Then there should be "img.gravatar" within "li.post:first"
+
+Scenario: A page should output the configured Google Analytics code
+  Given I am on the home page
+  Then I should see "google_tracking_code" within "body"
