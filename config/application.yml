@@ -2,7 +2,7 @@
 # environment.
 
 development:
-  google_analytics_code: Configure your Google Analytics code in config/application.yml
+  google_analytics_code: google_tracking_code
 
 test:
   google_analytics_code: google_tracking_code
