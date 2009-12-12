@@ -12,17 +12,20 @@
     = yield(:head)
   
   %body
+    %a{:href => "http://github.com/cblunt/molehill"}
+      %img#github{:src => "http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png", :alt => "Fork molehill on GitHub"}
+
     #header.container
       %h1= h(yield(:title) || "Molehill")
 
       %ol#navigation
+        %li= link_to "Home", root_path
+        %li= link_to "About", about_path
         - if logged_in?
           %li
             %span= current_user.email_address
-          %li= link_to "Home", root_path
           %li= link_to "Log out", logout_path
         - else
-          %li= link_to "Home", root_path
           %li= link_to "Log in", login_path
           %li= link_to "Register", signup_path
 

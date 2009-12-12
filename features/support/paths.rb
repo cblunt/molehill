@@ -17,6 +17,9 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /the about page/i
+      about_path(params)
+
     when /the posts page/i
       posts_path(params)
 
