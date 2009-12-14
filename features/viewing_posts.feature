@@ -107,3 +107,9 @@ Scenario: An avatar should be displayed next to posts
 Scenario: A page should output the configured Google Analytics code
   Given I am on the home page
   Then I should see "google_tracking_code" within "body"
+
+Scenario: People should be able to see a case was published
+  Given a post "post" exists with body: "Some Post", created_at: "2009-12-12 10:00:00"
+  And I am not logged in
+  When I am on the home page
+  Then I should see "Opened" within "li.post:first p.meta"

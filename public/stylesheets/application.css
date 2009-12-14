@@ -42,6 +42,9 @@ a {
   padding: 20px 40px;
   background: #fff;
   border: solid 1px #909090; }
+  #content p.meta {
+    font-size: 11px;
+    color: #909090; }
 
 #flash_notice,
 #flash_success,
