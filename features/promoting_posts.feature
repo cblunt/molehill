@@ -11,6 +11,20 @@ Scenario: Guests should not see a promote link
   Then I should see a list of posts
   And I should not see "Promote" within "li.post"
 
+Scenario: Guests should see a log in link if the case is open
+  Given I am not logged in
+  And 10 posts exist
+  And I am on the home page
+  Then I should see a list of posts
+  And I should see "Log in to promote this case" within "li.post"
+
+Scenario: Guests should not see a log in link if the case is not open
+  Given I am not logged in
+  And a post "post" exists
+  And post "post" is complete
+  When I am on the home page
+  Then I should not see "Log in to promote this case" within "li.post"
+
 Scenario: A user should be able to see if they have voted on a post
   Given I am logged in
   And a post "post" exists
@@ -22,6 +36,13 @@ Scenario: Users should see a promote link if they have not yet promoted the post
   And a post "the post" exists
   And I am on the home page
   Then I should see "Promote" within "li.post:first"
+
+Scenario: Users should not see a promote link if the post is not open
+  Given a post "post" exists
+  And post "post" is complete
+  When I am logged in
+  And I am on the home page
+  Then I should not see "Promote this case" within "li.post"
 
 Scenario: Trying to promote an invalid post displays an error
   Given I am logged in
