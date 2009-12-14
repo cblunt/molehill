@@ -11,6 +11,13 @@ Scenario: Guests should not see a promote link
   Then I should see a list of posts
   And I should not see "Promote" within "li.post"
 
+Scenario: Guests should see a log in link
+  Given I am not logged in
+  And 10 posts exist
+  And I am on the home page
+  Then I should see a list of posts
+  And I should see "Log in to promote this case" within "li.post"
+
 Scenario: A user should be able to see if they have voted on a post
   Given I am logged in
   And a post "post" exists
