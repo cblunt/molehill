@@ -83,6 +83,11 @@ protected
   def fetch_posts
     params[:page] ||= 1
 
+    if params[:tag_string]
+      tags = params[:tag_string].split(" ").collect { |t| "##{t}" }
+      params[:tags] = tags
+    end
+
     if params[:tags]
       @posts = Post.find_tagged_with(params[:tags]).paginate(:page => params[:page], :per_page => 10, :order => "votes_count DESC, created_at DESC")
     else

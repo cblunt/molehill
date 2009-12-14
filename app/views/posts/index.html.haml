@@ -1,5 +1,16 @@
+#filters
+  - form_tag posts_path, :method => :get do 
+    = text_field_tag :tag_string, params[:tag_string] || ""
+    = submit_tag "Search"
+
+  - if params[:tags]
+    = link_to "Clear search filters", posts_path
+
+
+.clear
+
 - if logged_in?
-  %h2 Post a feature or issue
+  %h2 Post a feature or bug
   - remote_form_for @post, :id => "new_post" do |f|
     %fieldset
       %ol
@@ -8,7 +19,6 @@
 
 - if params[:tags]
   %h2= "All cases matching #{params[:tags].join(", ")}"
-  = link_to "Clear search filters", posts_path
 - else
   %h2 Recent Posts
 

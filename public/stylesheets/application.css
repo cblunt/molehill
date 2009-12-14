@@ -48,6 +48,9 @@ a {
   #content .context_sensitive {
     visibility: hidden; }
 
+#filters {
+  float: right; }
+
 #flash_notice,
 #flash_success,
 #flash_error {
