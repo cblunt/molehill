@@ -1,4 +1,4 @@
-%li.post
+%li{:class => "post #{"complete" unless post.open?}"}
   = gravatar_image_tag post.user.email_address, {:size => 32} 
   %p
     %strong= "#{post.user.username}"
@@ -13,7 +13,7 @@
         = "You promoted this post"
       - elsif post.open?
         %span.context_sensitive= "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
-    - else
+    - elsif post.open?
       %span.context_sensitive= "#{link_to "Log in", login_path} to promote this case."
 
   - if post.completed?

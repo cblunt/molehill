@@ -77,6 +77,8 @@ ol, ul {
   margin-bottom: 1em;
   padding-bottom: 1em;
   border-bottom: 1px solid #e0e0e0; }
+  #posts li.complete {
+    color: #909090; }
 #posts p {
   margin-bottom: 1.5em; }
 #posts p.tasks {
