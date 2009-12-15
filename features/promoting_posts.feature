@@ -57,7 +57,7 @@ Scenario: Users should be able to promote a post
   When I follow "Promote" within "li.post:first"
   Then I should be on the posts page
   And my promoted posts should include "the post"
-  And I should see "You promoted this post" within "li.post:first"
+  And I should see "You promoted this case" within "li.post:first"
   Then a vote should exist with score: 1
 
 Scenario: Users should see a message if they have already promoted the post
@@ -67,7 +67,7 @@ Scenario: Users should see a message if they have already promoted the post
   And I am on the home page
   Then a vote "the vote" should exist with score: 1, user_id: 1
   And my promoted posts should include "the post"
-  And I should see "You promoted this post" within "li.post:first"
+  And I should see "You promoted this case" within "li.post:first"
 
 Scenario: A completed case should not show a promotion link
   Given I am logged in

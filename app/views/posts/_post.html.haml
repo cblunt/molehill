@@ -21,7 +21,7 @@
   %div.promote
     - if logged_in?
       - if current_user.promoted?(post)
-        = "You promoted this post"
+        = "You promoted this case"
       - elsif post.open?
         %span.context_sensitive= "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
     - elsif post.open?
