@@ -7,7 +7,7 @@ Feature: Writing Posts
 Scenario: Users should see the new post form
   Given I am logged in
   When I am on the home page
-  Then I should see "Post a feature or issue"
+  Then I should see "Post a feature or bug"
   And there should be 1 "form#new_post"
   And there should be "textarea#post_body" within "form#new_post"
   And there should be "input[value='Post Case']" within "form#new_post"

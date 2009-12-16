@@ -37,7 +37,10 @@ class PostsController < ApplicationController
   def promote
     fetch_post
 
-    current_user.promote @post
+    unless current_user.promote(@post)
+      flash[:error] = "You cannot promote your own post"
+    end
+
     redirect_to posts_path and return 
   end
 

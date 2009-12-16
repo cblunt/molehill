@@ -25,6 +25,13 @@ Scenario: Guests should not see a log in link if the case is not open
   When I am on the home page
   Then I should not see "Log in to promote this case" within "li.post"
 
+Scenario: A user should not be able to promote their own post
+  Given a post "post" exists with body: "Some Post"
+  And I am logged in
+  And "post" belongs to me
+  When I am on the home page
+  Then I should not see "Promote this case" within "li.post:first"
+
 Scenario: A user should be able to see if they have voted on a post
   Given I am logged in
   And a post "post" exists

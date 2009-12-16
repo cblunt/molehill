@@ -22,7 +22,7 @@
     - if logged_in?
       - if current_user.promoted?(post)
         = "You promoted this case"
-      - elsif post.open?
+      - elsif post.open? and post.user != current_user
         %span.context_sensitive= "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
     - elsif post.open?
       %span.context_sensitive= "#{link_to "Log in", login_path} to promote this case."

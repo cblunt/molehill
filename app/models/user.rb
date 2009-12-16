@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   end
   
   def promote(post)
+    return false if post.user == self
     self.votes.create(:post => post, :score => 1)
   end
 
