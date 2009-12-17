@@ -19,7 +19,7 @@ role :db,  "{your server}", :primary => true # This is where Rails migrations wi
 
 set :deploy_to, "/var/www/apps/#{application}"
 
-after 'deploy:update_code' , 'deploy:symlink_database'
+after 'deploy:update_code' , 'deploy:symlink_configurations'
 
 namespace :deploy do
   desc "Restarting mod_rails"
@@ -27,8 +27,10 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  desc "Symlink the database config file from shared directory to current release directory."
-  task :symlink_database do
+  desc "Symlink the database and other config files from shared directory to current release directory."
+  task :symlink_configurations do
     run "ln -nsf #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nsf #{shared_path}/config/application.yml #{release_path}/config/application.yml"
+    run "ln -nsf #{shared_path}/config/environments/production.rb #{release_path}/config/environments/production.rb"
   end
 end
