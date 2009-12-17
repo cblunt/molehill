@@ -91,4 +91,4 @@ Scenario: A declined case should not show a promotion link
   And "post" belongs to me
   And post "post" is declined
   When I am on the home page
-  Then I should not see "Promote" within "li.post:first" 
+  Then I should not see "Promote" within "li.post:first"

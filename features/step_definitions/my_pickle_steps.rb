@@ -2,6 +2,10 @@ Given /^"#{capture_model}" belongs to me$/ do |model|
   model!(model).send(:update_attribute, :user, controller.current_user)
 end
 
+Given /^#{capture_model} belongs to #{capture_model}$/ do |model, user|
+  model!(model).send(:update_attribute, :user, model!(user))
+end
+
 Given /^#{capture_model} (?:is|has been) completed?$/ do |model|
   model!(model).send :update_attribute, :completed_at, Time.now
 end

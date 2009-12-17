@@ -12,6 +12,19 @@ Given /^I am logged in$/ do
   click_button("Log in")
 end
 
+Given /^I am logged in as #{capture_model}$/ do |user|
+  user = model!(user)
+
+  @current_user = user
+  @current_user.verify_with_key(@current_user.verification_key)
+
+  visit login_path
+  fill_in("email_address", :with => user.email_address)
+  fill_in("password", :with => "secret")
+
+  click_button("Log in")
+end
+
 Given /^I am logged in with #{capture_fields}$/ do |fields|
   @current_user = Factory(:user, fields)
   @current_user.verify_with_key(@current_user.verification_key)

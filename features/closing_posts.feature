@@ -10,6 +10,15 @@ Scenario: A close link is displayed for posts owned by the user
   When I am on the home page
   Then I should see "Mark as Completed or Declined" within "li.post:first"
 
+Scenario: A user should not be able to complete or decline someone elses post
+  Given a user "joe" exists
+  And another user "bob" exists with username: "bob", email_address: "bob@company.com"
+  And a post "post" exists with body: "Some Post"
+  And post "post" belongs to user "joe"
+  When I am logged in as user "bob"
+  And I am on the home page
+  Then I should not see "Mark as Completed or Declined"
+
 Scenario: Clicking Complete should mark the post as completed
   Given I am logged in
   And a post "post" exists

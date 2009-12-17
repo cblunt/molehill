@@ -33,5 +33,7 @@
     %p.tasks= "Declined #{distance_of_time_in_words_to_now(post.declined_at)} ago"
   - elsif logged_in? and post.user == current_user
     %p.tasks.context_sensitive= "Mark as #{link_to "Completed", complete_post_path(post), :method => :put} or #{link_to "Declined", decline_post_path(post), :method => :put}."
+  - elsif logged_in?
+    %p.tasks.context_sensitive= "Suggest this case #{link_to "Complete"} or #{link_to "Declined"} to #{post.user.username}"
 
   .clear
