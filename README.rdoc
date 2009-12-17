@@ -12,10 +12,11 @@ To clone a copy of molehill:
   git clone git://github.com/cblunt/molehill.git
   cd molehill
 
-Configure and create your local database
+  # You'll need to create and configure your local database connection:
   cp config/database.yml.sample config/database.yml
-  
-  # edit config/database.yml to your needs
+
+You can setup application configuration (currently the code for Google Analytics) in
++config/application.yml+.
   
   rake db:migrate
   rake db:migrate RAILS_ENV=cucumber
@@ -31,6 +32,24 @@ To run all cucumber tests
 To provide an RCov report
   rake cucumber:rcov
   
+== Deployment
+
+Molehill is deployed using Capistrano. An example deploy script is included in the repository:
+
+  cp config/deploy.rb.example config/deploy.rb
+
+Now configure config/deploy.rb to point to your server and repository. Once
+that's done, you can setup your target server:
+
+  cap deploy:setup
+
+The capistrano script expects some configuration files to be stored on the
+deployment server (not in the repository due to security). These are symlinked after every deploy:
+
+  {shared_path}/config/application.yml 
+  {shared_path}/config/database.yml # Configures your database connections
+  {shared_path}/config/environments/production.rb # Contains your SMTP settings for notification emails
+
 == Further Info
 
 Blog: http://chrisblunt.com/blog
