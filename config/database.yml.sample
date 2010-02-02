@@ -15,6 +15,12 @@ test:
   pool: 5
   timeout: 5000
 
+cucumber:
+  adapter: sqlite3
+  database: db/cucumber.sqlite3
+  pool: 5
+  timeout: 5000
+
 production:
   adapter: sqlite3
   database: db/production.sqlite3
