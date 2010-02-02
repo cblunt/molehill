@@ -5,7 +5,7 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
-  def path_to(page_name)
+  def path_to(page_name, params = {})
     case page_name
     
     when /the home\s?page/
@@ -20,8 +20,28 @@ module NavigationHelpers
     when /the about page/i
       about_path(params)
 
-    when /the posts page/i
+    when /the posts page$/i
       posts_path(params)
+
+    when /the second posts page$/i
+      posts_path(:page => "2")
+
+    # the "posts" page with "page=2, tags=matched"
+    when /the "([^\"]*)" page with "([^\"]*)"$/i
+      path = $1
+      parameter_string = $2
+
+      params = {}
+      parameter_string.split(",").each do |part|
+        parts = part.strip.split("=")
+
+        key = parts[0]
+        val = parts[1]
+
+        params[key.to_sym] = val
+      end
+
+      send path.gsub(/ /, '_') + "_path", params
 
     when /the post page/i
       post_path(params)

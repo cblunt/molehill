@@ -12,12 +12,12 @@ Scenario: Searching for cases by hashtag should only display those posts that ha
   Then 2 posts should exist
   Given I am on the home page
   And I follow "#matched"
-  Then I should be on the posts page
+  Then I should be on the "posts" page with "tags[]=#matched"
   And I should see "this is a post that will be #matched"
   And I should not see "this is a post that will be #unmatched"
   Given I am on the home page
   And I follow "#unmatched"
-  Then I should be on the posts page
+  Then I should be on the "posts" page with "tags[]=#unmatched"
   And I should not see "this is a post that will be #matched"
   And I should see "this is a post that will be #unmatched"
 
@@ -30,7 +30,7 @@ Scenario: Searching should show filters in use
   Then 2 posts should exist
   Given I am on the home page
   And I follow "#matched"
-  Then I should be on the posts page
+  Then I should be on the "posts" page with "tags[]=#matched"
   And I should not see "Recent Posts"
   And I should see "All cases matching #matched"
 
@@ -43,7 +43,7 @@ Scenario: People should be able to clear filters
   Then 2 posts should exist
   Given I am on the home page
   And I follow "#matched"
-  Then I should be on the posts page
+  Then I should be on the "posts" page with "tags[]=#matched"
   And I should see "Clear search filters"
   When I follow "Clear search filters"
   Then I should be on the posts page

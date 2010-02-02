@@ -51,7 +51,7 @@ Scenario: Guests should be able to page through posts
   And 20 posts exist
   When I am on the home page
   And I follow "Next Page"
-  Then I should be on the posts page
+  Then I should be on the second posts page
 
 Scenario: Guests should not see the new post entry form
   Given I am not logged in
