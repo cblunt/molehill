@@ -3,16 +3,16 @@ module NavigationHelpers
   #
   #   When /^I go to (.+)$/ do |page_name|
   #
-  # step definition in webrat_steps.rb
+  # step definition in web_steps.rb
   #
-  def path_to(page_name, params = {})
+  def path_to(page_name)
     case page_name
     
     when /the home\s?page/
       '/'
     
     # Add more mappings here.
-    # Here is a more fancy example:
+    # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
@@ -46,7 +46,7 @@ module NavigationHelpers
       
     when /the (verify|verification) page/i
       verify_path(params)
-    
+
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

@@ -1,0 +1,13 @@
+vendored_cucumber_bin = Dir["#{RAILS_ROOT}/vendor/{gems,plugins}/cucumber*/bin/cucumber"].first
+
+namespace :cucumber do
+  Cucumber::Rake::Task.new(:rcov) do |t|
+    t.binary = vendored_cucumber_bin
+    t.fork = true # You may get faster startup if you set this to false
+    t.rcov = true
+    t.rcov_opts << %[-o "features_coverage"]
+    t.rcov_opts << %[-x "features"]
+  end
+end
+
+
