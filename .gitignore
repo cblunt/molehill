@@ -1,8 +1,8 @@
-tmp/*
-coverage/*
-config/database.yml
-db/*.sqlite*
+.bundle
+db/*.sqlite3
 log/*.log
+tmp/**/*
+config/database.yml
+config/deploy.rb
 coverage/*
 features_coverage/*
-config/deploy.rb

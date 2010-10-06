@@ -1,4 +1,3 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def render_ajax_flash page
     if flash[:success]
@@ -48,5 +47,4 @@ module ApplicationHelper
   def google_analytics_tags
     APP_CONFIG['google_analytics_code'] unless APP_CONFIG['google_analytics_code'].nil?
   end
-
 end
