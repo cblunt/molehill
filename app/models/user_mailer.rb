@@ -1,10 +1,8 @@
 class UserMailer < ActionMailer::Base
+  default :from => "Molehill Notifications <notifications@molehill.example.com>"
 
-  def verification_email(user)
-    from            "Molehill Notifications <notifications@#{ActionMailer::Base.default_url_options[:host]}>"
-    recipients      "#{user.email_address}"
-    subject         "Please verify your account"
-    body            :user => user
+  def verification_email(recipient)
+    @user = recipient
+    mail :to => recipient.email_address, :subject => "Please verify your account"
   end
-
 end
