@@ -1,8 +1,7 @@
 Hi!
 
 
-= "You're email address was recently used to register an account at #{root_url}"
-To activate your account, please click on the following link:
+You're email address was recently used to register an account at #{root_url}. To activate your account, please click on the following link:
 
 
 = verify_url(@user.id, @user.verification_key)
