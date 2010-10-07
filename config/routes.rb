@@ -35,9 +35,9 @@ Molehill::Application.routes.draw do
   resources :users
   resources :posts do
     member do 
-      put 'promote'
-      put 'complete'
-      put 'decline'
+      put :promote
+      put :complete
+      put :decline
     end
   end
 

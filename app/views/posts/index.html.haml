@@ -6,12 +6,11 @@
   - if params[:tags]
     = link_to "Clear search filters", posts_path
 
-
 .clear
 
 - if logged_in?
   %h2 Post a feature or bug
-  - remote_form_for @post, :id => "new_post" do |f|
+  - form_for @post, :id => "new_post", :remote => true do |f|
     %fieldset
       %ol
         %li= f.text_area :body, :rows => 5

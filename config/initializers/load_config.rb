@@ -1,1 +1,1 @@
-APP_CONFIG = YAML::load_file("#{RAILS_ROOT}/config/application.yml")[RAILS_ENV]
+APP_CONFIG = HashWithIndifferentAccess.new(YAML::load_file("#{Rails.root}/config/application.yml")[Rails.env])

@@ -29,13 +29,15 @@ module ApplicationHelper
       options[:protocol] = "http"
     end
 
-    url_for(:gravatar_id => Digest::MD5.hexdigest(email), 
-            :default => url_for(:controller => "/images/user_#{options[:size]}.png", :only_path => false),
-            :format => "jpg",
-            :host => options[:host],
-            :protocol => options[:protocol],
-            :only_path => false,
-            :controller => "avatar.php")
+    url = options[:protocol]
+    url << "://"
+    url << options[:host]
+    url << "/avatar.php"
+    url << "?gravatar_id=#{Digest::MD5.hexdigest(email)}"
+    url << "&format=jpg"
+    url << "&default=#{url_for("/images/user_#{options[:size]}.png")}"
+    
+    url
   end
 
   def gravatar_image_tag(email, options = {}, html_options = {})

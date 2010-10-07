@@ -7,6 +7,9 @@ gem 'rails', '3.0.0'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
+# Use jQuery UJS
+gem 'jquery-rails'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -29,17 +32,23 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 group :test do
-  gem 'rspec'
-  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'email_spec'
   gem 'factory_girl'
   gem 'faker'
-  gem 'cucumber'
-  gem 'webrat'
-  gem 'rcov'
+  gem 'launchy' 
   gem 'pickle'
-  gem 'email_spec'
+  gem 'rcov'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'spork'
+  gem 'webrat'
 end
 
 # Application gems
 gem 'will_paginate', '>= 3.0.pre2'
 gem 'haml'
+gem 'acts-as-taggable-on'

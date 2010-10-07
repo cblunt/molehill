@@ -1,9 +1,13 @@
 - title "Sign up"
 
-%p== Already have an account? #{link_to "Log in", login_path}.
+%p Already have an account? #{link_to "Log in", login_path}.
+
+- if @user.errors.any?
+  %ul.errors
+    - @user.errors.full_messages.each do |msg|
+      %li.error_message= msg
 
 - form_for @user do |f|
-  = f.error_messages
   %p
     = f.label :username
     %br

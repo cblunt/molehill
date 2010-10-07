@@ -23,15 +23,23 @@
       - if current_user.promoted?(post)
         = "You promoted this case"
       - elsif post.open? and post.user != current_user
-        %span.context_sensitive= "#{link_to "Promote", promote_post_path(post), :method => :put} this case."
+        %span.context_sensitive
+          = link_to "Promote", promote_post_path(post), :method => :put
+          this case.
     - elsif post.open?
-      %span.context_sensitive= "#{link_to "Log in", login_path} to promote this case."
+      %span.context_sensitive
+        = link_to "Log in", login_path
+        to promote this case.
 
   - if post.completed?
     %p.tasks= "Completed #{distance_of_time_in_words_to_now(post.completed_at)} ago"
   - elsif post.declined?
     %p.tasks= "Declined #{distance_of_time_in_words_to_now(post.declined_at)} ago"
   - elsif logged_in? and post.user == current_user
-    %p.tasks.context_sensitive= "Mark as #{link_to "Completed", complete_post_path(post), :method => :put} or #{link_to "Declined", decline_post_path(post), :method => :put}."
+    %p.tasks.context_sensitive
+      Mark as
+      = link_to "Completed", complete_post_path(post), :method => :put
+      or 
+      = link_to "Declined", decline_post_path(post), :method => :put
 
   .clear

@@ -2,10 +2,17 @@
 # environment.
 
 development:
-  google_analytics_code: google_tracking_code
+  host: molehill-dev
+  google_analytics_code: ~
 
 test:
-  google_analytics_code: google_tracking_code
+  host: example.com
+  google_analytics_code: ~
 
 cucumber:
-  google_analytics_code: google_tracking_code
+  host: example.com
+  google_analytics_code: ~
+
+production:
+#  host: 
+#  google_tracking_code: UA-12345-67
